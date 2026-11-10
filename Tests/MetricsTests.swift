@@ -138,6 +138,7 @@ struct MetricsTests {
             ("agents", { NotchAgentTests.run(suite) }),
             ("features", {
                 FeatureCatalogTests.run(suite)
+                PomodoroContractTests.run(suite)
                 MenuPanelSectionGateContract.run(suite)
             }),
             ("shortcut-clearing", { ShortcutClearingTests.run(suite) }),
