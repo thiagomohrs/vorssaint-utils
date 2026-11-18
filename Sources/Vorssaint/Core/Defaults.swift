@@ -261,6 +261,8 @@ enum DefaultsKey {
     // Set only while Vorssaint owes a Bluetooth restore, so a Mac shut down
     // while asleep still gets it back on the next launch.
     static let bluetoothSleepRestorePending = "bluetoothSleepRestorePending"
+    static let lidLockEnabled = "lidLockEnabled"
+    static let lidLockIncludeNonHDMI = "lidLockIncludeNonHDMI"
     static let musicBlockEnabled = "musicBlockEnabled"
     static let musicBlockReplacementPath = "musicBlockReplacementPath"  // app bundle path ("" = none)
     static let musicBlockPlayReplacement = "musicBlockPlayReplacement" // play after Play/Pause opens the replacement
@@ -1397,6 +1399,8 @@ enum Defaults {
         DefaultsKey.bluetoothSleepEnabled: false,
         DefaultsKey.bluetoothSleepRestoreOnWake: true,
         DefaultsKey.bluetoothSleepRestorePending: false,
+        DefaultsKey.lidLockEnabled: false,
+        DefaultsKey.lidLockIncludeNonHDMI: false,
         DefaultsKey.musicBlockEnabled: false,
         DefaultsKey.musicBlockReplacementPath: "",
         DefaultsKey.musicBlockPlayReplacement: true,

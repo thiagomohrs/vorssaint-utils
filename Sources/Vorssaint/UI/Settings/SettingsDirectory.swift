@@ -189,6 +189,9 @@ enum SettingsDirectory {
                                         ($0, [$0.hubTitle(s, hub: FeatureStrings.hub(language), language: language)])
                                        }),
                 SettingsDirectoryItem(page: .energy, title: s.tabEnergy, icon: "bolt.fill",
+                                       keywords: [FeatureStrings.lidLock(language).pageTitle,
+                                                  FeatureStrings.lidLock(language).enable,
+                                                  FeatureStrings.lidLock(language).includeNonHDMI],
                                        featureKeywords: [
                                         (.keepAwake, [s.keepAwakeTitle, s.clamshellTitle,
                                                       s.defaultDurationLabel, s.showCountdown,

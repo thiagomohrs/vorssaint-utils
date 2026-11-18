@@ -24,6 +24,8 @@ struct EnergySettings: View {
     @AppStorage(DefaultsKey.extraBrightnessLevel) private var extraBrightnessLevel = 100
     @AppStorage(DefaultsKey.bluetoothSleepEnabled) private var bluetoothSleepEnabled = false
     @AppStorage(DefaultsKey.bluetoothSleepRestoreOnWake) private var bluetoothSleepRestoreOnWake = true
+    @AppStorage(DefaultsKey.lidLockEnabled) private var lidLockEnabled = false
+    @AppStorage(DefaultsKey.lidLockIncludeNonHDMI) private var lidLockIncludeNonHDMI = false
     @AppStorage(DefaultsKey.defaultDuration) private var defaultDuration = 0
     @AppStorage(DefaultsKey.batteryLimit) private var batteryLimit = 10
     @AppStorage(DefaultsKey.keepAwakeAutoStart) private var keepAwakeAutoStart = false
@@ -64,6 +66,10 @@ struct EnergySettings: View {
                 if (focus == nil || focus == .bluetoothSleep), AppFeature.bluetoothSleep.isAvailable {
                     bluetoothCard
                         .settingsSectionAnchor(.bluetoothSleep, cornerRadius: 16)
+                }
+                if focus == nil || focus == .lidLock {
+                    lidLockCard
+                        .settingsSectionAnchor(.lidLock, cornerRadius: 16)
                 }
             }
             .frame(maxWidth: 760)
@@ -484,6 +490,37 @@ struct EnergySettings: View {
                 }
             } else {
                 SettingsRow(symbol: "dot.radiowaves.left.and.right", title: strings.pageTitle,
+                            caption: strings.unsupported) {
+                    EmptyView()
+                }
+            }
+        }
+    }
+
+    // MARK: - Lid lock on external display
+
+    private var lidLockCard: some View {
+        let strings = FeatureStrings.lidLock(l10n.language)
+        return SettingsCard {
+            if LidLockService.isSupported {
+                SettingsRow(symbol: "lock.laptopcomputer", title: strings.enable,
+                            caption: strings.enableCaption) {
+                    Toggle(strings.enable, isOn: $lidLockEnabled)
+                        .labelsHidden()
+                        .onChange(of: lidLockEnabled) { _, _ in
+                            LidLockService.shared.syncWithPreferences()
+                        }
+                }
+                if lidLockEnabled {
+                    SettingsRow(symbol: "display", title: strings.includeNonHDMI,
+                                caption: strings.includeNonHDMICaption) {
+                        Toggle(strings.includeNonHDMI, isOn: $lidLockIncludeNonHDMI)
+                            .labelsHidden()
+                    }
+                    .padding(.leading, settingsRowTextInset)
+                }
+            } else {
+                SettingsRow(symbol: "lock.laptopcomputer", title: strings.pageTitle,
                             caption: strings.unsupported) {
                     EmptyView()
                 }

@@ -246,6 +246,7 @@ struct MetricsTests {
                 WallpaperThumbnailTests.run(suite)
             }),
             ("emoji", { CommandBarEmojiContract.run(suite) }),
+            ("lid-lock", { LidLockTests.run { suite.expect($0, $1) } }),
         ]
         var selected = Set<String>()
         var listOnly = false

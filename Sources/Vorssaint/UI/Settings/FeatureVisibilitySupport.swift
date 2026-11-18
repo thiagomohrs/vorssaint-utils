@@ -24,6 +24,7 @@ enum SettingsSectionAnchor: String, CaseIterable, Hashable {
     case brightness
     case extraBrightness
     case bluetoothSleep
+    case lidLock
     case scrollDirection
     case scrollZoom
     case focusFollowsMouse
@@ -64,7 +65,7 @@ enum SettingsSectionAnchor: String, CaseIterable, Hashable {
         case .panelConfiguration, .mixer, .audioPriority, .musicBlocking,
              .soundOutputSwitcher:
             return .general
-        case .keepAwake, .brightness, .extraBrightness, .bluetoothSleep: return .energy
+        case .keepAwake, .brightness, .extraBrightness, .bluetoothSleep, .lidLock: return .energy
         case .scrollDirection, .scrollZoom, .focusFollowsMouse, .smoothScroll, .linearScroll, .mouseAcceleration, .mouseNavigation, .mouseButtonShortcuts,
              .middleClick, .mouseClickDebounce:
             return .mouse
